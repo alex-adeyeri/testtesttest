@@ -16,10 +16,11 @@ variable "ami" {
   description = "ID of AMI to use for the instance"
   type        = string
 }
+
 variable "iam_instance_profile" {
   description = "The IAM Instance Profile to launch the instance with. Specified as the name of the Instance Profile."
   type        = string
-  default     = ""
+  default     = "xxxxx"
 }
 variable "associate_public_ip_address" {
   description = "If true, the EC2 instance will have associated public IP address"

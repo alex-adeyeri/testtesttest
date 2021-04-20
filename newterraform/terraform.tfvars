@@ -1,0 +1,14 @@
+associate_public_ip_address = false
+instance_type="t2.micro"
+region= "us-east-1"
+vpc_id= "vpc-06f9576bc5e7a3e7b"
+subnets_id = "subnet-0b4915b03e3869e9b"
+availability_zones = ["us-east-1e","us-east-1f"]
+security_group= ["sg-01f1d2cddeef91ed0"]
+security_group_rules =[ "sg-01f1d2cddeef91ed0","sg-08116b019da8dee70"]
+# ami_filter_name = "amazon"
+# ami_filter_owner-alias =""
+# ami_filter_virtualization_type= ""
+role_path ="/"
+instance_count = 2
+role_name = "testrole"

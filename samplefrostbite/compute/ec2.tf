@@ -7,35 +7,32 @@
 
 
 resource "aws_instance" "sample_node" {
-  count                       = var.instance_count
+  count                       = local.instance_count
   instance_type               = var.instance_type
   ami                         = var.ami_id
   user_data                   = var.user_data
   associate_public_ip_address = var.associate_public_ip_address
   iam_instance_profile        = var.iam_instance_profile
   availability_zone           = var.availability_zone
-  tags = {
-    Name     = "sample_node-${random_id.sample_node_id[count.index].dec}"
-    Hostname = "sample_node-${random_id.sample_node_id[count.index].dec}"
-  }
+  vpc_security_group_ids       = [var.vpc_sg]
+  subnet_id                    = var.vpc_subnets
+  tags                        = module.this.tags
+
   lifecycle {
     create_before_destroy = true
   }
 
-
-  # key_name               = ""
-  vpc_security_group_ids = [var.vpc_sg]
-  subnet_id              = var.vpc_subnets[count.index]
-
-
   root_block_device {
-    volume_size = var.vol_size
+    volume_type           = var.root_volume_type
+    volume_size           = var.root_volume_size
+    delete_on_termination = var.delete_on_termination
+    encrypted             = var.root_block_device_encrypted
   }
-  resource "aws_kms_key" "a" {
-    description             = "KMS key 1"
-    deletion_window_in_days = 10
-  }
-# }
+  # resource "aws_kms_key" "a" {
+  #   description             = "KMS key 1"
+  #   deletion_window_in_days = 10
+  # }
+#  }
 
 # output "" {
 #   value = aws_instance.sample_node.private_ip
