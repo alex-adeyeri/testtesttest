@@ -43,7 +43,7 @@ module "ec2_instance" {
 #   ami_filter_name = "amazon"
 #   ami_filter_owner-alias =""
 #   ami_filter_virtualization_type= ""
-  role_path =var.role_path
+  role_path =var.role_pa
   instance_count = var.instance_count
   role_name = var.role_name
 }
